@@ -1,0 +1,29 @@
+<br>
+<h1>Add Devices</h1>
+<br>
+<div class="row">
+    <div class="col-md-6">
+        <form class="form-horizontal" ng-submit="addDevice(deviceForm.$valid)" name="deviceForm" role="form">
+            <div class="form-group">
+                <label for="name">Device Name:</label>
+                <input type="text" class="form-control" id="name" placeholder="Device Name" ng-model="model.device.name" name="name" required>
+            </div>
+            <div class="form-group" ng-repeat="switch in model.switches track by $index">
+                <label for="switch1" ng-if="$index == 0">Switches:</label>
+
+                <div class="input-group">
+                    <input type="text" class="form-control" id="switch + {{$index+1}}" placeholder="Switch {{$index+1}}" ng-model="switch.name" required>
+                    <span class="input-group-btn" ng-if="$index > 0">
+                        <button class="btn btn-danger" type="button" ng-click="removeSwitch($index)"> - </button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-info" type="button" ng-click="addSwitch()">Add Switches</button>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" ng-click="clearForm()" class="btn btn-info">Cancel</button>
+        </form>
+    </div>
+</div>

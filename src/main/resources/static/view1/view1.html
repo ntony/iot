@@ -1,0 +1,42 @@
+<br>
+<h1>Devices</h1>
+<br>
+<div class="row">
+    <div class="col-md-6" ng-repeat="device in model.devices">
+        <div class="row">
+            <div class="col-md-12">
+                <a ng-href="#/view3/{{device.id}}"><h4>{{device.name}}</h4></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"><b>Created: </b></div>
+            <div class="col-md-9">{{device.created | date:"dd/MM/yyyy HH:mm:ss"}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"><b>Last update: </b></div>
+            <div class="col-md-9">{{device.lastUpdated | date:"dd/MM/yyyy HH:mm:ss"}}</div>
+        </div>
+        <div class="row">
+            <div>&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                    <tr>
+                        <th>Switch</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="(key, value) in device.switches">
+                        <td>{{key}}</td>
+                        <td>{{(value) ? "ON" : "OFF"}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
