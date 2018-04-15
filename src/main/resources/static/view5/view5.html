@@ -1,5 +1,5 @@
 <br>
-<h1>Parking Status</h1>
+<h1>Book Parking</h1>
 <br>
 <div class="row">
     <div class="col-md-6">
@@ -22,14 +22,19 @@
                 <table class="table table-condensed table-hover">
                     <thead>
                     <tr>
-                        <th>Switch</th>
+                        <th>Slot</th>
                         <th>Status</th>
+
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="(key, value) in model.device.switches track by $index">
                         <td>{{key}}</td>
                         <td>{{(value) ? "Booked" : "Free"}}</td>
+                        <td>
+                            <button ng-if="!value" class="btn btn-primary" ng-click="bookParking(key)">Book</button>
+                            <button ng-if="value" class="btn btn-primary" disabled>Book</button>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

@@ -35,6 +35,16 @@ angular.module('myApp.view5', ['ngRoute'])
             $scope.getDevice($scope.model.id);
         }
 
+        $scope.bookParking = function (selectedSwitch) {
+            Service.modifySwitch($scope.model.id, selectedSwitch, "true")
+                .then(function (data) {
+                    $scope.model.device = data;
+                })
+                .catch(function (data) {
+                    // Handle error here
+                });
+        };
+
         setInterval(function(){
             //window.location.reload(1);
             $scope.getDevice($scope.model.id);

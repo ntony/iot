@@ -50,4 +50,9 @@ angular.module('myApp.view4', ['ngRoute'])
         if($scope.model.id) {
             $scope.getDevice($scope.model.id);
         }
+
+        setInterval(function(){
+            //window.location.reload(1);
+            $scope.getDevice($scope.model.id);
+        }, 5000);
     }]);
