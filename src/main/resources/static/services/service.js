@@ -68,5 +68,57 @@ angular.module('myApp.service', [])
             return deferred.promise;
         };
 
+        service.getMonitors = function () {
+            var deferred = $q.defer();
+            APIFactory.serviceMethod("GET", "/monitors").then(function (data) {
+                deferred.resolve(data);
+            },function(data){
+                deferred.reject(data);
+            });
+            return deferred.promise;
+        };
+
+        service.getMonitor = function (id) {
+            var deferred = $q.defer();
+            APIFactory.serviceMethod("GET", "/monitors/" + id).then(function (data) {
+                deferred.resolve(data);
+            },function(data){
+                deferred.reject(data);
+            });
+            return deferred.promise;
+        };
+
+        service.getMonitorContent = function (id) {
+            var deferred = $q.defer();
+            APIFactory.serviceMethod("GET", "/monitors/" + id + "/logs").then(function (data) {
+                deferred.resolve(data);
+            },function(data){
+                deferred.reject(data);
+            });
+            return deferred.promise;
+        };
+
+        service.addMonitor = function (monitor) {
+            var deferred = $q.defer();
+            APIFactory.serviceMethod("POST", "/monitors", monitor).then(function (data) {
+                deferred.resolve(data);
+            },function(data){
+                deferred.reject(data);
+            });
+            return deferred.promise;
+        };
+
+        service.modifyMonitor = function (id, key) {
+            var deferred = $q.defer();
+            APIFactory.serviceMethod("GET", "/monitors/" + id + "/modify?key=" + key + "&value=0").then(function (data) {
+                deferred.resolve(data);
+            },function(data){
+                deferred.reject(data);
+            });
+            return deferred.promise;
+        };
+
+
+
         return service;
     }]);

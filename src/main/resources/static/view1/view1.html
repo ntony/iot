@@ -4,8 +4,13 @@
 <div class="row">
     <div class="col-md-6" ng-repeat="device in model.devices">
         <div class="row">
-            <div class="col-md-12">
-                <a ng-href="#/view3/{{device.id}}"><h4>{{device.name}}</h4></a>
+            <div class="col-md-12" ng-if="device.type == 'CONTROL'">
+                <a ng-href="#/view3/{{device.id}}"><h4>{{device.name}} (Control)</h4></a>
+            </div>
+            <div class="col-md-12" ng-if="device.type == 'PARKING'">
+                <h4>{{device.name}}</h4>
+                <a ng-href="#/view4/{{device.id}}"><h4>(Parking Manager)</h4></a>
+                <a ng-href="#/view5/{{device.id}}"><h4>(Parking Status)</h4></a>
             </div>
         </div>
         <div class="row">
@@ -31,7 +36,8 @@
                     <tbody>
                     <tr ng-repeat="(key, value) in device.switches">
                         <td>{{key}}</td>
-                        <td>{{(value) ? "ON" : "OFF"}}</td>
+                        <td ng-if="device.type == 'CONTROL'">{{(value) ? "ON" : "OFF"}}</td>
+                        <td  ng-if="device.type == 'PARKING'">{{(value) ? "Booked" : "Free"}}</td>
                     </tr>
                     </tbody>
                 </table>

@@ -1,47 +1,41 @@
 package in.energiasolutions.iot.iot;
 
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
+import java.util.*;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class Device {
+public class Monitor {
 
     @Id
     private final String id = UUID.randomUUID().toString();
 
     private String name;
 
-    @ElementCollection
-    private Map<String,Boolean> switches = new HashMap<>(0);
-
     private LocalDateTime created = LocalDateTime.now();
 
     private LocalDateTime lastUpdated;
 
-    @Enumerated(EnumType.STRING)
-    private Type type = Type.CONTROL;
+    /*@OrderBy("created DESC")
+    @ElementCollection
+    private List<DeviceLog> logs = new ArrayList<>(0);*/
 
-    public Device(String name, Map<String, Boolean> switches) {
+    public Monitor(String name) {
         this.name = name;
-        this.switches = switches;
     }
+
+    /*public Monitor log(String key,String value){
+        this.logs.add(new DeviceLog(LocalDateTime.now(),key,value));
+        return this;
+    }*/
 
     @PreUpdate
     public void updated(){
         lastUpdated = LocalDateTime.now();
     }
-
-    private enum Type
-    {
-        PARKING, CONTROL
-    }
-
 }

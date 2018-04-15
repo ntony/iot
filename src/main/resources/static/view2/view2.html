@@ -8,6 +8,14 @@
                 <label for="name">Device Name:</label>
                 <input type="text" class="form-control" id="name" placeholder="Device Name" ng-model="model.device.name" name="name" required>
             </div>
+            <div class="form-group">
+                <label>For Control:
+                    <input type="radio" ng-model="model.device.type" value="CONTROL">
+                </label>
+                <label>For Parking:
+                    <input type="radio" ng-model="model.device.type" value="PARKING">
+                </label>
+            </div>
             <div class="form-group" ng-repeat="switch in model.switches track by $index">
                 <label for="switch1" ng-if="$index == 0">Switches:</label>
 
@@ -23,7 +31,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="reset" ng-click="clearForm()" class="btn btn-info">Cancel</button>
+            <button type="reset" ng-click="clearForm()" class="btn btn-info">Reset</button>
         </form>
     </div>
 </div>

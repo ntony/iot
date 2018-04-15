@@ -1,11 +1,19 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:iot;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:file:~/iot;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     driver-class-name: org.h2.Driver
-    hikari:
-      connection-timeout: 60000
-      maximum-pool-size: 5
+    validation-query: select 1
+    connection-test-query: select 1
+    test-while-idle: true
+    test-on-borrow: true
+    time-between-eviction-runs-millis: 60000
+  jpa:
+    hibernate:
+      ddl-auto: none
+    generate-ddl: true
   h2:
     console:
       enabled: true
       path: /console
+      settings:
+        web-allow-others: true

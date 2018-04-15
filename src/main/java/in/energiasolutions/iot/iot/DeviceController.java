@@ -29,6 +29,7 @@ public class DeviceController {
     public ResponseEntity changeState(@PathVariable("id")String id,@RequestParam("switch")String sw,@RequestParam boolean state){
         Device device = deviceRepository.findById(id).get();
         device.getSwitches().put(sw,state);
+        device.updated();
         return ResponseEntity.ok(deviceRepository.save(device));
     }
 }

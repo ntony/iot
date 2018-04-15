@@ -38,6 +38,7 @@ angular.module('myApp.view2', ['ngRoute'])
                     device.switches[value.name] = true;
                 });
             }
+            device.type = $scope.model.device.type;
             $scope.add(device);
         }
     };
