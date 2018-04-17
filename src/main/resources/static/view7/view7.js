@@ -45,4 +45,8 @@ angular.module('myApp.view7', ['ngRoute'])
         if($scope.model.id) {
             $scope.getMonitor($scope.model.id);
         }
+
+        setInterval(function(){
+            $scope.getMonitor($scope.model.id);
+        }, 10000);
     }]);

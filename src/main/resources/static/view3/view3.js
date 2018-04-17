@@ -50,4 +50,8 @@ angular.module('myApp.view3', ['ngRoute'])
         if($scope.model.id) {
             $scope.getDevice($scope.model.id);
         }
+
+        setInterval(function(){
+            $scope.getDevice($scope.model.id);
+        }, 10000);
     }]);

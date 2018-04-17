@@ -78,3 +78,10 @@ body { background: #fafafa !important; }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px;
 }
+.logo {
+    background-color: #FFFFFF;
+    margin-right: 20px;
+}
+.logo img {
+    height: 60px;
+}
