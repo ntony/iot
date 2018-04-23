@@ -9,7 +9,7 @@ angular.module('myApp.view8', ['ngRoute'])
   });
 }])
 
-.controller('view8Ctrl', ['$scope', 'Service', '$window', function ($scope, Service, $window) {
+.controller('view8Ctrl', ['$scope', 'Service', '$window', '$filter', function ($scope, Service, $window, $filter) {
 
     $scope.model = {
         monitor: {},
@@ -31,6 +31,7 @@ angular.module('myApp.view8', ['ngRoute'])
     $scope.addMonitor = function (isValid) {
         if(isValid) {
             var monitor = {};
+            monitor.id = $filter('date')(new Date(), "dHHssmmsss");
             monitor.name = $scope.model.monitor.name;
             $scope.add(monitor);
         }

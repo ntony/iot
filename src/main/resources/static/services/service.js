@@ -90,7 +90,7 @@ angular.module('myApp.service', [])
 
         service.getMonitorContent = function (id) {
             var deferred = $q.defer();
-            APIFactory.serviceMethod("GET", "/monitors/" + id + "/logs").then(function (data) {
+            APIFactory.serviceMethod("GET", "/monitors/" + id + "/logs?sort=created,DESC").then(function (data) {
                 deferred.resolve(data);
             },function(data){
                 deferred.reject(data);

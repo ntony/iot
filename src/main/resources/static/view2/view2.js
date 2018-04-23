@@ -9,7 +9,7 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', ['$scope', 'Service', '$window', function ($scope, Service, $window) {
+.controller('View2Ctrl', ['$scope', 'Service', '$window', '$filter', function ($scope, Service, $window, $filter) {
 
     $scope.model = {
         device: {},
@@ -31,6 +31,7 @@ angular.module('myApp.view2', ['ngRoute'])
     $scope.addDevice = function (isValid) {
         if(isValid) {
             var device = {};
+            device.id = $filter('date')(new Date(), "dHHssmmsss");
             device.name = $scope.model.device.name;
             device.switches = {};
             if($scope.model.switches.length > 0) {

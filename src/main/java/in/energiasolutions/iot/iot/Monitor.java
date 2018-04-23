@@ -13,7 +13,7 @@ import java.util.*;
 public class Monitor {
 
     @Id
-    private final String id = UUID.randomUUID().toString();
+    private String id;
 
     private String name;
 
@@ -37,5 +37,11 @@ public class Monitor {
     @PreUpdate
     public void updated(){
         lastUpdated = LocalDateTime.now();
+    }
+
+    @PrePersist
+    public void preSave(){
+        if (id == null || id.isEmpty())
+            id = UUID.randomUUID().toString();
     }
 }

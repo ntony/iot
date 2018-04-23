@@ -15,7 +15,7 @@ import java.util.UUID;
 public class Device {
 
     @Id
-    private final String id = UUID.randomUUID().toString();
+    private String id;
 
     private String name;
 
@@ -37,6 +37,12 @@ public class Device {
     @PreUpdate
     public void updated(){
         lastUpdated = LocalDateTime.now();
+    }
+
+    @PrePersist
+    public void preSave(){
+        if (id == null || id.isEmpty())
+            id = UUID.randomUUID().toString();
     }
 
     private enum Type
