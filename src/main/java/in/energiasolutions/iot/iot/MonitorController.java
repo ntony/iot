@@ -3,6 +3,7 @@ package in.energiasolutions.iot.iot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -45,6 +46,13 @@ public class MonitorController {
     public ResponseEntity logs(@PathVariable("id")String id, Pageable pageable){
         Monitor device = monitorRepository.findById(id).get();
         return ResponseEntity.ok(deviceLogRepository.findByMonitor(device,pageable));
+    }
+
+    @Transactional
+    @DeleteMapping("/monitors/{id}/logs")
+    public void deleteLogs(@PathVariable("id")String id){
+        Monitor device = monitorRepository.findById(id).get();
+        deviceLogRepository.deleteByMonitor(device);
     }
 
     @GetMapping("/monitors/{id}/logs/{key}")

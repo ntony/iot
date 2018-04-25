@@ -42,6 +42,16 @@ angular.module('myApp.view7', ['ngRoute'])
                 });
         };
 
+        $scope.clearLogs = function (id) {
+            Service.clearMonitorContent(id)
+                .then(function (data) {
+                    $scope.getMonitorContent(id);
+                })
+                .catch(function (data) {
+                    // Handle error here
+                });
+        };
+
         if($scope.model.id) {
             $scope.getMonitor($scope.model.id);
         }

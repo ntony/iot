@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface DeviceLogRepository extends JpaRepository<DeviceLog,String>{
 
     Page<DeviceLog> findByMonitor(Monitor monitor, Pageable pageable);
+    void deleteByMonitor(Monitor monitor);
     Page<DeviceLog> findByKeyAndMonitor(String key,Monitor monitor, Pageable pageable);
 
 }

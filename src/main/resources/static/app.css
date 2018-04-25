@@ -85,3 +85,7 @@ body { background: #fafafa !important; }
 .logo img {
     height: 60px;
 }
+.buttonClass {
+    right: 45px;
+    top: 20px;
+}

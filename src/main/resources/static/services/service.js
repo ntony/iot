@@ -118,7 +118,15 @@ angular.module('myApp.service', [])
             return deferred.promise;
         };
 
-
+        service.clearMonitorContent = function (id) {
+            var deferred = $q.defer();
+            APIFactory.serviceMethod("DELETE", "/monitors/" + id + "/logs").then(function (data) {
+                deferred.resolve(data);
+            },function(data){
+                deferred.reject(data);
+            });
+            return deferred.promise;
+        };
 
         return service;
     }]);
